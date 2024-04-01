@@ -20,6 +20,7 @@
       <tr><td>観光地画像</td><td><%= f.file_field :image,accept: "image/*" %></td></tr>
       <tr><td>観光地名</td><td><%= f.text_field :name %></td></tr>
       <tr><td>観光地説明</td><td><%= f.text_area :explanation %></td></tr>
+      <tr><td>郵便番号</td><td><%= text_field_tag :zipcode, nil, class: 'form-control', placeholder: "郵便番号" %></td></tr>
       <tr><td>住所</td><td><%= f.text_field :address %></td></tr>
       <tr><td>おすすめ季節</td><td><%= f.radio_button :season, :spring, id:"spring" %><label for="spring">春</label>
                                    <%= f.radio_button :season, :summer, id:"summer" %><label for="summer">夏</label>
@@ -30,3 +31,5 @@
     <% end %>
   </div>
 </div>
+
+<%= javascript_pack_tag "jpostal", 'data-turbolinks-track': 'reload' %>

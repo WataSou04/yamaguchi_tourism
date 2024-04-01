@@ -7,5 +7,8 @@ class TouristSpot < ApplicationRecord
   validates :address, presence: true
   validates :season, presence: true
   
+  geocoded_by :address
+  after_validation :geocode
+  
   enum season: { spring: 0, summer: 1, autumn: 2, winter: 3 }
 end

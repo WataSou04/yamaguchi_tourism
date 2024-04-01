@@ -9,4 +9,7 @@
     <%= @tourist_spot.address %>
     <%= @tourist_spot.season_i18n %>
   </div>
+  <div id="map"></div>
 </div>
+
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
