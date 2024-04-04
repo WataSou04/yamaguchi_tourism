@@ -8,11 +8,23 @@ async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
   
-map = new Map(document.getElementById("map"), {
-    center: { lat: 35.681236, lng: 139.767125 }, 
-    zoom: 15,
+  map = new Map(document.getElementById("map"), {
+    center: { lat: 34.25080, lng: 131.58422 }, 
+    zoom: 10,
     mapTypeControl: false
   });
+  
+  const response = await fetch("/tourist_spots.json").then((res) => res.json()).catch(error => console.error(error))
+  if (response.ok) {
+    const items = response.data.items
+    items.forEach((item) => {
+      const marker = new google.maps.Marker({
+        position: new google.maps.LatLng(item.latitude, item.longitude),
+        map,
+        title: item.name,
+      });
+    });
+  }
 }
 
 initMap()

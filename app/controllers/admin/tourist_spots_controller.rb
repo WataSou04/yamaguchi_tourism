@@ -13,7 +13,14 @@ class Admin::TouristSpotsController < ApplicationController
   end
   
   def show
-    @tourist_spot = TouristSpot.find(params[:id])
+    respond_to do |format|
+      format.html do
+        @tourist_spot = TouristSpot.find(params[:id])
+      end
+      format.json do
+        @tourist_spot = TouristSpot.find(params[:id])
+      end
+    end
   end
   
   def edit
