@@ -1,1 +1,12 @@
-<h1>マイページ</h1>
+<div class="container">
+  <div class="row">
+    <h5>マイページ</h5><%= link_to "編集する", edit_custoemr_path, class: 'btn btn-primary' %>
+  </div>
+  <div class="row">
+    <table>
+      <tr><td>名前</td><td><%= @customer.last_name %> <%= @customer.first_name %></td></tr>
+      <tr><td>フリガナ</td><td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td></tr>
+      <tr><td>メールアドレス</td><td><%= @customer.email %></td></tr>
+    </table>
+  </div>
+</div>

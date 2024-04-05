@@ -24,9 +24,16 @@ class Admin::TouristSpotsController < ApplicationController
   end
   
   def edit
+    @tourist_spot = TouristSpot.find(params[:id])
   end
   
   def update
+    @tourist_spot = TouristSpot.find(params[:id])
+    if @tourist_spot.update(tourist_spot_params)
+      redirect_to admin_tourist_spot_path(@tourist_spot.id)
+    else
+      render :edit
+    end
   end
   
   private

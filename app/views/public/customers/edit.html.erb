@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <h5>登録情報編集</h5>
+  </div>
+  <div class="row">
+    <%= form_with model: @customer, url: customer_path, method: :patch do |f| %>
+    <table>
+      <tr><td><label for="Name">氏名</label></td><td><%= f.text_field :last_name, autofocus: true, id:"Name" %><%= f.text_field :first_name, autofocus: true, id:"Name" %></td></tr>
+      <tr><td><label for="フリガナ">フリガナ</label></td><td><%= f.text_field :last_name_kana, autofocus: true, id:"フリガナ" %><%= f.text_field :first_name_kana, autofocus: true, id:"フリガナ" %></td></tr>
+      <tr><td><label for="Email">メールアドレス</label></td><td><%= f.text_field :email, autofocus: true, id:"Email" %></td></tr>
+    </table>
+    <%= f.submit "編集内容を保存", class: 'btn btn-success' %>
+    <% end %>
+    <%
+  </div>
+</div>
