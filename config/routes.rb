@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    resources :customers, only: [:show, :edit, :update, :destroy]
+    get 'customers' => 'customers#show'
+    get 'customers/information/edit' => 'customers#edit'
+    patch 'customers/information' => 'customers#update'
+    patch 'customers/withdrawal' => 'customers#withdrawal'
     resources :tourist_spots, only: [:index, :show]
     get 'reviews/:id/new' => 'reviews#new', as: :make
     get 'reviews/completion' => 'reviews#completion'
