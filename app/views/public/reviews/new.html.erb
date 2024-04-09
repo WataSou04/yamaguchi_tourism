@@ -20,6 +20,7 @@
       <tr><td>観光地画像</td><td><%= f.file_field :image,accept: "image/*" %></td></tr>
       <tr><td>評価</td><td><%= f.select :evaluation, {"1": '1', "2": '2', "3": '3', "4": '4', "5": '5'} %></td></tr>
       <tr><td>コメント</td><td><%= f.text_area :thoughts %></td></tr>
+      <%= f.hidden_field :tourist_spot_id, value: @tourist_spot.id %>
       <%= f.hidden_field :customer_id, value: current_customer.id %>
     </table>
     <%= f.submit "投稿する", class: 'btn btn-success' %>

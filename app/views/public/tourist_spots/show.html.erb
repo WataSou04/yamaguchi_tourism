@@ -14,9 +14,9 @@
   </dvi>
   <div class="row">
     <table class="table">
-      <tr><td>評価</td><td>コメント</td></tr>
+      <tr><td>投稿者</td><td>評価</td><td>コメント</td></tr>
     <% @reviews.each do |review| %>
-      <tr><td><%= review.evaluation %></td><td><%= review.thoughts %></td></tr>
+      <tr><td><%= review.customer.last_name %></td><td><%= review.evaluation %></td><td><%= review.thoughts %></td><td><%= link_to "詳細", review_path(review.id) %></td></tr>
     <% end %>
     </table>
   </div>

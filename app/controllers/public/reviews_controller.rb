@@ -4,6 +4,11 @@ class Public::ReviewsController < ApplicationController
     @tourist_spot = TouristSpot.find(params[:id])
   end
   
+  def show
+    @review = Review.find(params[:id])
+    @comments = Comment.where(review_id: @review.id)
+  end
+  
   def check
     @review = Review.new(review_params)
     @review_new = Review.new(review_params)

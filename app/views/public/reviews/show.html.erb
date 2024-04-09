@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <h5>レビュー詳細</h5>
+  </div>
+  <div class="row">
+    <table>
+      <tr><td>投稿者</td><td></td></tr>
+      <tr><td>評価数</td><td><%= @review.evaluation %></td></tr>
+      <tr><td>感想</td><td><%= @review.thoughts %></td></tr>
+    </table>
+  </div>
+  <div class="row">
+    <table>
+      <% @comments.each do |comment| %>
+      <tr><td>投稿者</td></tr>
+      <tr><td>コメント</td><td><%= comment.thoughts %></td></tr>
+    </table>
+  </div>
+</div>

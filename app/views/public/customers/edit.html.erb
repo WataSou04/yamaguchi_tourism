@@ -3,6 +3,16 @@
     <h5>登録情報編集</h5>
   </div>
   <div class="row">
+    <% if @customer.errors.any? %>
+      <%= @customer.errors.count %>件のエラーが発生しました。
+      <ul>
+        <%= @customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  <div class="row">
     <%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
     <table>
       <tr><td><label for="Name">氏名</label></td><td><%= f.text_field :last_name, autofocus: true, id:"Name" %><%= f.text_field :first_name, autofocus: true, id:"Name" %></td></tr>
