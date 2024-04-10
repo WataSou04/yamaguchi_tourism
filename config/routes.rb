@@ -12,10 +12,12 @@ Rails.application.routes.draw do
     patch 'customers/information' => 'customers#update'
     patch 'customers/withdrawal' => 'customers#withdrawal'
     resources :tourist_spots, only: [:index, :show]
-    get 'reviews/:id/new' => 'reviews#new', as: :make
+    get 'reviews/:id/new' => 'reviews#new', as: :review_make
     get 'reviews/completion' => 'reviews#completion'
     resources :reviews, only: [:create, :show, :destroy]
     post 'reviews/check' => 'reviews#check'
+    get 'comments/:id/new' => 'comments#new', as: :comment_make
+    resources :comments, only: [:create, :destroy]
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {

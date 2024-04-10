@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <h5>コメント入力</h5>
+  </div>
+  <div class="row">
+    <%= form_with model: @comment, url: comments_path, method: :post do |f| %>
+    <table>
+      <tr><td>コメント</td><td><%= f.text_area :thoughts %></td></tr>
+      <%= f.hidden_field :review_id, value: @review.id %>
+      <%= f.hidden_field :customer_id, value: current_customer.id %>
+    </table>
+    <%= f.submit "投稿する", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

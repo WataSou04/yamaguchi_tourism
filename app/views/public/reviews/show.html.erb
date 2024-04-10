@@ -12,8 +12,10 @@
   <div class="row">
     <table>
       <% @comments.each do |comment| %>
-      <tr><td>投稿者</td></tr>
-      <tr><td>コメント</td><td><%= comment.thoughts %></td></tr>
+      <tr><td>投稿者</td><td>コメント</td></tr>
+      <tr><td></td><td><%= comment.thoughts %></td></tr>
+      <% end %>
     </table>
   </div>
+  <div class="row"><%= link_to "コメントを書く", comment_make_path(@review.id) %></div>
 </div>
