@@ -13,7 +13,7 @@
     <table>
       <% @comments.each do |comment| %>
       <tr><td>投稿者</td><td>コメント</td></tr>
-      <tr><td></td><td><%= comment.thoughts %></td></tr>
+      <tr><td><%= comment.customer.last_name %> <%= comment.customer.first_name %></td><td><%= comment.thoughts %></td></tr>
       <% end %>
     </table>
   </div>
