@@ -1,6 +1,20 @@
 <div class="container">
   <div class="row">
-    <h5>レビュー詳細</h5>
+    <h5>レビュー詳細</h5><%= link_to '削除する', admin_review_path(@review.id), method: :delete, class: 'btn btn-danger' %>
   </div>
-  <div class="row"></div>
+  <div class="row">
+    <table>
+      <tr><td>投稿者</td><td><%= @review.customer.last_name %> <%= @review.customer.first_name %></td></tr>
+      <tr><td>評価数</td><td><%= @review.evaluation %></td></tr>
+      <tr><td>感想</td><td><%= @review.thoughts %></td></tr>
+    </table>
+  </div>
+  <div class="row">
+    <table>
+      <tr><td>投稿者</td><td>コメント</td></tr>
+      <% @comments.each do |comment| %>
+      <tr><td><%= comment.customer.last_name %> <%= comment.customer.first_name %></td><td><%= comment.thoughts %></td><td><%= link_to "削除する", admin_comment_path(comment), method: :delete, class: 'btn btn-danger' %></td></tr>
+      <% end %>
+    </table>
+  </div>
 </div>

@@ -7,7 +7,7 @@ class Public::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to tourist_spots_path
+      redirect_to review_path(@comment.review_id)
     else
       render :new
     end
