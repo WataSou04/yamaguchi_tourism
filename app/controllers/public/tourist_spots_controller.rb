@@ -6,6 +6,6 @@ class Public::TouristSpotsController < ApplicationController
   def show
     @tourist_spot = TouristSpot.find(params[:id])
     @review = Review.new
-    @reviews = Review.all
+    @reviews = Review.where(tourist_spot_id: @tourist_spot.id)
   end
 end

@@ -16,6 +16,7 @@ class Admin::TouristSpotsController < ApplicationController
     respond_to do |format|
       format.html do
         @tourist_spot = TouristSpot.find(params[:id])
+        @reviews = Review.where(tourist_spot_id: @tourist_spot.id)
       end
       format.json do
         @tourist_spot = TouristSpot.find(params[:id])
