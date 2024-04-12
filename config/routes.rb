@@ -11,10 +11,11 @@ Rails.application.routes.draw do
     get 'customers/information/edit' => 'customers#edit'
     patch 'customers/information' => 'customers#update'
     patch 'customers/withdrawal' => 'customers#withdrawal'
-    resources :tourist_spots, only: [:index, :show]
-    get 'reviews/:id/new' => 'reviews#new', as: :review_make
-    get 'reviews/completion' => 'reviews#completion'
-    resources :reviews, only: [:create, :show, :destroy]
+    resources :tourist_spots, only: [:index, :show] do
+      resources :reviews, only: [:new, :create, :show, :destroy]
+      get 'reviews/completion' => 'reviews#completion'
+      resource :favorite, only: [:create, :destroy]
+    end
     post 'reviews/check' => 'reviews#check'
     get 'comments/:id/new' => 'comments#new', as: :comment_make
     resources :comments, only: [:create, :destroy]

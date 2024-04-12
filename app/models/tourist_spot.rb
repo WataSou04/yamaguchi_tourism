@@ -1,5 +1,6 @@
 class TouristSpot < ApplicationRecord
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_one_attached :image
   
   validates :name, presence: true
@@ -11,4 +12,8 @@ class TouristSpot < ApplicationRecord
   after_validation :geocode
   
   enum season: { spring: 0, summer: 1, autumn: 2, winter: 3 }
+  
+  def favorited_by?(customer)
+    favorites.exists?(customer_id: customer.id)
+  end
 end

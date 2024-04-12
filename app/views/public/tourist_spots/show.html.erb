@@ -1,6 +1,19 @@
 <div class="container">
   <div class="row">
     <h5>観光地詳細</h5>
+    <% if @tourist_spot.favorited_by?(current_customer) %>
+      <p>
+        <%= link_to tourist_spot_favorite_path(@tourist_spot), method: :delete do %>
+          ❤️<%= @tourist_spot.favorites.count %>いいね
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to tourist_spot_favorite_path(@tourist_spot), method: :post do %>
+          ♡<%= @tourist_spot.favorites.count %>いいね
+        <% end %>
+      </p>
+    <% end %>
   </div>
   <div class="row">
     <%= image_tag @tourist_spot.image, size: "350x250" %>
@@ -10,13 +23,13 @@
     <%= @tourist_spot.season_i18n %>
   </div>
   <dvi class="row">
-    <%= link_to "レビューを書く", review_make_path(@tourist_spot.id) %>
+    <%= link_to "レビューを書く", new_tourist_spot_review_path(@tourist_spot.id) %>
   </dvi>
   <div class="row">
     <table class="table">
       <tr><td>投稿者</td><td>評価</td><td>コメント</td></tr>
     <% @reviews.each do |review| %>
-      <tr><td><%= review.customer.last_name %> <%= review.customer.first_name %></td><td><%= review.evaluation %></td><td><%= review.thoughts %></td><td><%= link_to "詳細", review_path(review.id) %></td></tr>
+      <tr><td><%= review.customer.last_name %> <%= review.customer.first_name %></td><td><%= review.evaluation %></td><td><%= review.thoughts %></td><td><%= link_to "詳細", tourist_spot_review_path(review.id) %></td></tr>
     <% end %>
     </table>
   </div>
