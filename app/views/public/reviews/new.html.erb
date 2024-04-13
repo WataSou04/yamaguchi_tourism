@@ -24,7 +24,7 @@
         <%= f.label :感想 %>
         <%= f.text_area :thoughts %>
       </div>
-      <div>
+      <div id="evaluation">
         <%= f.label :evaluation %>
         <%= f.hidden_field :evaluation, id: :review_evaluation %>
         <div id='post-raty'></div>
@@ -38,16 +38,15 @@
           let opt = {
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
-            starHalf: "<%= asset_path('star-half.png')",
-            scoreName
-          }
-        })
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'review[evaluation]',
+          };
+          raty(elem, opt);
+        });
       </script>
-        
-        
+      
       <%= f.hidden_field :tourist_spot_id, value: @tourist_spot.id %>
       <%= f.hidden_field :customer_id, value: current_customer.id %>
-    </table>
     <%= f.submit "投稿する", class: 'btn btn-success' %>
     <% end %>
   </div>

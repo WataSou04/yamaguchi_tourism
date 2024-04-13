@@ -14,8 +14,12 @@ async function initMap() {
     mapTypeControl: false
   });
   
-  const response = await fetch("/tourist_spots.json").then((res) => res.json()).catch(error => console.error(error))
-  if (response.ok) {
+  var url = new URL(window.location.href);
+  var paths = url.pathname.split('/');
+  var id = paths.pop();
+  
+  const response = await fetch(`/admin/tourist_spots/${id}.json`).then((res) => res.json()).catch(error => console.error(error))
+  if (response.data.items) {
     const items = response.data.items
     items.forEach((item) => {
       const marker = new google.maps.Marker({
@@ -26,5 +30,7 @@ async function initMap() {
     });
   }
 }
+
+
 
 initMap()

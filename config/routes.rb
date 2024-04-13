@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
-    resources :tourist_spots, only: [:new, :create, :show, :edit, :update]
+    resources :tourist_spots, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :reviews, only: [:show, :destroy]
     resources :comments, only: [:destroy]
     resource :map, only: [:show]
