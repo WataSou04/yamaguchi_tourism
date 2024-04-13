@@ -16,10 +16,35 @@
   
   <div class="row">
     <%= form_with model: @review, url: tourist_spot_reviews_path, method: :post do |f| %>
-    <table>
-      <tr><td>観光地画像</td><td><%= f.file_field :image,accept: "image/*" %></td></tr>
-      <tr><td>評価</td><td><%= f.select :evaluation, {"1": '1', "2": '2', "3": '3', "4": '4', "5": '5'} %></td></tr>
-      <tr><td>コメント</td><td><%= f.text_area :thoughts %></td></tr>
+      <div>
+        <%= f.label :観光地画像 %>
+        <%= f.file_field :image,accept: "image/*" %>
+      </div>
+      <div>
+        <%= f.label :感想 %>
+        <%= f.text_area :thoughts %>
+      </div>
+      <div>
+        <%= f.label :evaluation %>
+        <%= f.hidden_field :evaluation, id: :review_evaluation %>
+        <div id='post-raty'></div>
+      </div>
+      <script>
+        $(document).on('turbolinks:load', function() {
+          let elem = document.querySelector('#post_raty');
+          if (elem == null) return;
+          
+          elem.innerHTML = ""
+          let opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png')",
+            scoreName
+          }
+        })
+      </script>
+        
+        
       <%= f.hidden_field :tourist_spot_id, value: @tourist_spot.id %>
       <%= f.hidden_field :customer_id, value: current_customer.id %>
     </table>
