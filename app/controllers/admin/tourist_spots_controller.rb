@@ -37,6 +37,12 @@ class Admin::TouristSpotsController < ApplicationController
     end
   end
   
+  def destroy
+    @tourist_spot = TouristSpot.find(params[:id])
+    @tourist_spot.destroy
+    redirect_to admin_root_path
+  end
+  
   private
   
   def tourist_spot_params
