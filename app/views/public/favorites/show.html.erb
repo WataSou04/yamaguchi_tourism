@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <h5>お気に入り</h5>
+  </div>
+  <div id="map"></div>
+  <div class="row">
+    <% @favorites.each do |favorite| %>
+      <%= favorite.tourist_spot.name %>
+    <% end %>
+  </div>
+</div>
+
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
