@@ -1,6 +1,6 @@
 class Public::TouristSpotsController < ApplicationController
   def index
-    @tourist_spots = TouristSpot.all
+    @tourist_spots = TouristSpot.page(params[:page])
   end
   
   def show
