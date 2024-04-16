@@ -6,6 +6,7 @@
   <div class="row">
     <% @favorites.each do |favorite| %>
       <%= favorite.tourist_spot.name %>
+      <%= favorite.tourist_spot.address %>
     <% end %>
   </div>
 </div>
