@@ -7,18 +7,26 @@ let map;
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
-  
+
   map = new Map(document.getElementById("map"), {
-    center: { lat: 34.25080, lng: 131.58422 }, 
+    center: { lat: 34.25080, lng: 131.58422 },
     zoom: 10,
     mapTypeControl: false
   });
-  
+
   var url = new URL(window.location.href);
   var paths = url.pathname.split('/');
   var id = paths.pop();
-  
-  const response = await fetch(`/admin/tourist_spots/${id}.json`).then((res) => res.json()).catch(error => console.error(error))
+  var json_url = "";
+  if(url.pathname.indexOf("/favorite/show")  == 0 ){
+    json_url = "/favorite/show.json";
+  }
+  else{
+    json_url = `/admin/tourist_spots/${id}.json`;
+  }
+  console.log(url.pathname.indexOf("/favorite/show"));
+  console.log(json_url);
+  const response = await fetch(json_url).then((res) => res.json()).catch(error => console.error(error))
   if (response.data.items) {
     const items = response.data.items
     items.forEach((item) => {
