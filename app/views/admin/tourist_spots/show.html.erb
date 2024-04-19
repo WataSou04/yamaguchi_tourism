@@ -1,19 +1,15 @@
-<div class="container mt-5">
-  <div>
+<div class="container">
+  <div class="row mt-5">
     <h2><%= @tourist_spot.name %></h2>
   </div>
-  <div class="row">
+  <div class="row mt-3">
     <div class="col-md-6">
       <%= image_tag @tourist_spot.image, size: "500x350" %>
     </div>
-    <div class="col-md-6">
-      <p><%= @tourist_spot.explanation %></p>
+    <div class="col-md-6 shadow rounded-3">
       <p><%= @tourist_spot.address %></p>
       <p><%= @tourist_spot.season_i18n %></p>
-      <p><%= link_to "編集", edit_admin_tourist_spot_path %></p>
+      <p><%= @tourist_spot.explanation %></p>
     </div>
   </div>
 </div>
-<div id="map"></div>
-
-<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
