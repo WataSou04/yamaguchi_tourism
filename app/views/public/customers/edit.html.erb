@@ -14,7 +14,7 @@
           </ul>
         <% end %>
   
-        <%= form_with model: @customer, url: admin_customers_path, method: :patch do |f| %>
+        <%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
@@ -35,8 +35,8 @@
           </div>
           <hr>
           <%= f.submit "変更を保存", class: 'btn btn-lg btn-block btn-info mt-4' %>
-          <%= link_to "退会する", customers_withdrawal_path, method: :patch, class: 'btn btn-lg btn-block btn-info mt-4' %>
         <% end %>
+        <%= link_to "退会する", customers_withdrawal_path, method: :patch, class: 'btn btn-lg btn-block btn-danger mt-4' %>
       </div>
     </div>
   </div>

@@ -1,7 +1,9 @@
-<div class="card-list-container py-5">
-  <%= link_to "観光地追加", new_admin_tourist_spot_path %>
+<div class="card-list-container py-5 d-flex flex-wrap">
+  <div>
+    <%= link_to "観光地追加", new_admin_tourist_spot_path %>
+  </div>
   <% @tourist_spots.each do |tourist_spot| %>
-  <div class="card w-50 mx-auto mt-4 shadow-lg">
+  <div class="card w-25 mx-auto mt-4 shadow-lg">
     <%= link_to admin_tourist_spot_path(tourist_spot.id) do %>
       <%= image_tag tourist_spot.image, class: "card-img-top"; %>
     <% end %>

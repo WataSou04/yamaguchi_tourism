@@ -1,13 +1,21 @@
 <div class="container">
   <div class="row">
-    <h5>マイページ</h5><%= link_to "編集する", customers_information_edit_path, class: 'btn btn-primary' %>
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">マイページ</h5>
+      <div class="form-body p-4">
+        <div class="input-group mb-3 mt-4 p-2 border-bottom border-dark">
+          <%= @customer.last_name %> <%= @customer.first_name %>
+        </div>
+        <div class="input-group mb-3 mt-4 p-2 border-bottom border-dark">
+          <%= @customer.last_name_kana %> <%= @customer.first_name_kana %>
+        </div>
+        <div class="input-group mb-3 mt-4 p-2 border-bottom border-dark">
+          <%= @customer.email %>
+        </div>
+        <hr>
+        <%= link_to "編集する", customers_information_edit_path, class: 'btn btn-lg btn-block btn-info my-4' %>
+        <%= link_to "お気に入り観光地", favorite_show_path, class: 'btn btn-lg btn-block btn-primary' %>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <table>
-      <tr><td>名前</td><td><%= @customer.last_name %> <%= @customer.first_name %></td></tr>
-      <tr><td>フリガナ</td><td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td></tr>
-      <tr><td>メールアドレス</td><td><%= @customer.email %></td></tr>
-    </table>
-  </div>
-  <%= link_to "お気に入り", favorite_show_path %>
 </div>

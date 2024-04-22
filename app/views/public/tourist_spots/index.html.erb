@@ -1,6 +1,6 @@
-<div class="card-list-container py-5">
+<div class="card-list-container py-5 d-flex flex-wrap">
   <% @tourist_spots.each do |tourist_spot| %>
-  <div class="card w-50 mx-auto mt-4 shadow-lg">
+  <div class="card w-25 mx-auto mt-4 shadow-lg">
     <%= link_to tourist_spot_path(tourist_spot.id) do %>
       <%= image_tag tourist_spot.image, class: "card-img-top"; %>
     <% end %>
