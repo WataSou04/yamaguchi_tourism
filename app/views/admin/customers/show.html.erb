@@ -3,16 +3,16 @@
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light p-4 mb-0"><%= @customer.last_name %> <%= @customer.first_name %>さんの会員詳細</h5>
       <div class="form-body p-4">
-        <div class="mb-3 mt-4">
+        <div class="mb-3 mt-4 border-bottom border-dark">
           <%= @customer.id %>
         </div>
-        <div class="mb-3 mt-4">
+        <div class="mb-3 mt-4 border-bottom border-dark">
           <%= @customer.last_name %> <%= @customer.first_name %>
         </div>
-        <div class="mb-3 mt-4">
+        <div class="mb-3 mt-4 border-bottom border-dark">
           <%= @customer.email %>
         </div>
-        <div class="mb-3 mt-4">
+        <div class="mb-3 mt-4 border-bottom border-dark">
           <%= @customer.is_active ? '有効' : '退会' %>
         </div>
         <hr>

@@ -17,7 +17,7 @@ class Public::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     if @review.save
-      redirect_to reviews_completion_path
+      redirect_to tourist_spot_reviews_completion_path
     else
       render :new
     end

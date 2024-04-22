@@ -1,14 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col mt-5">
-      <h1>お気に入り観光地</h1>
-    </div>
-    <div id="map"></div>
-    <div class="row">
-      <% @favorites.each do |favorite| %>
-        <%= favorite.tourist_spot
+<div id="map", class="mt-5"></div>
+<div class="card-list-container py-5 d-flex flex-wrap">
+  <% @favorites.each do |favorite| %>
+  <div class="card w-25 mx-auto mt-4 shadow-lg">
+    <%= link_to tourist_spot_path(favorite.tourist_spot.id) do %>
+      <%= image_tag favorite.tourist_spot.image, class: "card-img-top"; %>
+    <% end %>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-10">
+          <p class="card-title">
+            <%= link_to(tourist_spot_path(favorite.tourist_spot.id), class: "text-dark") do %>
+              <strong><i class="far fa-flag"></i><span><%= favorite.tourist_spot.name %></span></strong>
+            <% end %>
+          </p>
+          <p class="card-text"><%= favorite.tourist_spot.address %></p>
+          <span><%= link_to "#{favorite.tourist_spot.favorites.count} 人登録", tourist_spot_path(favorite.tourist_spot.id), class: "text-dark" %></span>
+        </div>
+      </div>
     </div>
   </div>
+  <% end %>
+  <%= paginate @favorites %>
 </div>
 
 <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>

@@ -2,7 +2,7 @@ class Public::FavoritesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @favorites = current_customer.favorites.all
+        @favorites = current_customer.favorites.page(params[:page])
       end
       format.json do
         @favorites = current_customer.favorites.all

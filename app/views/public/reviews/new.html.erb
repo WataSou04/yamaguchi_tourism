@@ -1,53 +1,50 @@
 <div class="container">
   <div class="row">
-    <h5>レビュー投稿</h5>
-  </div>
-  
-  <div class="row">
-    <% if @review.errors.any? %>
-      <%= @review.errors.count %>件のエラーが発生しました。
-      <ul>
-        <%= @review.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">レビュー投稿</h5>
+      <div class="form-body p-4">
+        <% if @review.errors.any? %>
+          <ul class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">
+              <%= @review.errors.count %>件のエラーが発生しました。
+            </h6>
+            <%= @review.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
         <% end %>
-      </ul>
-    <% end %>
-  </div>
-  
-  <div class="row">
-    <%= form_with model: @review, url: tourist_spot_reviews_path, method: :post do |f| %>
-      <div>
-        <%= f.label :観光地画像 %>
-        <%= f.file_field :image,accept: "image/*" %>
-      </div>
-      <div>
-        <%= f.label :感想 %>
-        <%= f.text_area :thoughts %>
-      </div>
-      <div id="evaluation">
-        <%= f.label :評価 %>
-        <%= f.hidden_field :evaluation, id: :review_evaluation %>
-        <div id="post-raty"></div>
-      </div>
-      <script>
-        $(document).on('turbolinks:load', function() {
-          let elem = document.querySelector('#post-raty');
-          if (elem == null) return;
+        
+        <%= form_with model: @review, url: tourist_spot_reviews_path do |f| %>
+          <%= f.file_field :image,accept: "image/*", class: 'w-100' %>
+          <div class="input-group mb-3 mt-4">
+            <%= f.text_area :thoughts, class: "form-control", placeholder: "感想" %>
+          </div>
+          <div id="evaluation">
+            <%= f.label :評価 %>
+            <%= f.hidden_field :evaluation, id: :review_evaluation %>
+            <div id="post-raty"></div>
+          </div>
+          <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#post-raty');
+              if (elem == null) return;
           
-          elem.innerHTML = ""
-          let opt = {
-            starOn: "<%= asset_path('star-on.png') %>",
-            starOff: "<%= asset_path('star-off.png') %>",
-            starHalf: "<%= asset_path('star-half.png') %>",
-            scoreName: 'review[evaluation]',
-          };
-          raty(elem, opt);
-        });
-      </script>
-      
-      <%= f.hidden_field :tourist_spot_id, value: @tourist_spot.id %>
-      <%= f.hidden_field :customer_id, value: current_customer.id %>
-    <%= f.submit "投稿する", class: 'btn btn-success' %>
-    <% end %>
+              elem.innerHTML = ""
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                scoreName: 'review[evaluation]',
+              };
+              raty(elem, opt);
+            });
+          </script>
+          <%= f.hidden_field :tourist_spot_id, value: @tourist_spot.id %>
+          <%= f.hidden_field :customer_id, value: current_customer.id %>
+          <hr>
+          <%= f.submit "投稿する", class: 'btn btn-lg btn-block btn-success my-4' %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
