@@ -10,9 +10,15 @@
       <%= image_tag @tourist_spot.image, size: "600x450", class: 'rounded' %>
     </div>
     <div class="col-md-5 shadow rounded-3 pt-3 position-relative">
-      <h3>ガイド</h3>
-      <p><%= @tourist_spot.explanation %></p>
-      <div class="btn btn-lg btn-block position-absolute bottom-0 start-50 translate-middle-x"><%= link_to "編集する", edit_admin_tourist_spot_path, class: 'btn btn-lg btn-block btn-primary' %></div>
+      <div>
+        <h3>ガイド</h3>
+      </div>
+      <div>
+        <p><%= @tourist_spot.explanation %></p>
+      </div>
+      <div class="align-self-end">
+        <%= link_to "編集する", edit_admin_tourist_spot_path, class: 'btn btn-lg btn-block btn-primary' %>
+      </div>
     </div>
   </div>
 </div>

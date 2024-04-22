@@ -1,33 +1,59 @@
-<h2>新規会員登録</h2>
-
-<%= form_with model: @customer, url: customer_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <table>
-    <tr>
-      <td>名前</td>
-      <td><%= f.label :"(姓)" %></td><td><%= f.text_field :last_name %></td>
-      <td><%= f.label :"(名)" %></td><td><%= f.text_field :first_name %></td>
-    </tr>
-    <tr>
-      <td>フリガナ</td>
-      <td><%= f.label :"(セイ)" %></td><td><%= f.text_field :last_name_kana %></td>
-      <td><%= f.label :"(メイ)" %></td><td><%= f.text_field :first_name_kana %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :メールアドレス %></td><td></td><td><%= f.text_field :email, autofocus: true, autocomplete: "email" %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :パスワード %>
-      
-      </td>
-      <td></td>
-      <td><%= f.password_field :password, autocomplete: "new-password" %></td>
-    </tr>
-    <tr><td><%= f.label :"パスワード(確認用)" %></td><td></td><td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td></tr>
-  </table>
-  <%= f.submit "新規登録", class: 'btn btn-success' %>
-<% end %>
-
-<h5>既に登録済みの方</h5>
-<p><%= link_to "こちら", new_customer_session_path %> からログインしてください。</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">新規会員登録</h5>
+      <div class="form-body p-4">
+        <% if @customer.errors.any? %>
+          <ul class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">
+              <%= @customer.errors.count %>件のエラーが発生しました。
+            </h6>
+            <%= @customer.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        
+        <%= form_with model: @customer, url: customer_registration_path do |f| %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
+            </div>
+            <%= f.text_field :last_name, class: "form-control", placeholder: "姓" %><%= f.text_field :first_name, class: "form-control", placeholder: "名" %>
+          </div>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
+            </div>
+            <%= f.text_field :last_name_kana, class: "form-control", placeholder: "セイ" %><%= f.text_field :first_name_kana, class: "form-control", placeholder: "メイ" %>
+          </div>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
+            </div>
+            <%= f.text_field :email, class: "form-control", placeholder: "メールアドレス" %>
+          </div>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
+            </div>
+            <%= f.text_field :password, class: "form-control", placeholder: "パスワード" %>
+          </div>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
+            </div>
+            <%= f.text_field :password_confirmation, class: "form-control", placeholder: "確認用パスワード" %>
+          </div>
+          <hr>
+          <%= f.submit "新規登録", class: 'btn btn-lg btn-block btn-success my-4' %>
+        <% end %>
+        <hr>
+        <div class="mt-4">
+          <h5>既に登録済みの方</h5>
+          <p><%= link_to "こちら", new_customer_session_path %> からログインしてください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
