@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     patch 'customers/withdrawal' => 'customers#withdrawal'
     resources :tourist_spots, only: [:index, :show] do
       resources :reviews, only: [:new, :create, :show, :destroy]
-      get 'reviews/completion' => 'reviews#completion'
       resource :favorite, only: [:create, :destroy]
     end
     get 'favorite/show' => 'favorites#show'

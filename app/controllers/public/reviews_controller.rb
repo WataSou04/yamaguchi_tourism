@@ -5,7 +5,7 @@ class Public::ReviewsController < ApplicationController
   end
   
   def show
-    @review = Review.find(params[:tourist_spot_id])
+    @review = Review.find(params[:id])
     @comments = Comment.where(review_id: @review.id)
   end
   
@@ -17,7 +17,7 @@ class Public::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     if @review.save
-      redirect_to tourist_spot_reviews_completion_path
+      redirect_to tourist_spot_review_path(@review.tourist_spot.id, @review.id)
     else
       render :new
     end
