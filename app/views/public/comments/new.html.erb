@@ -1,27 +1,29 @@
 <div class="container">
   <div class="row">
-    <h5>コメント入力</h5>
-  </div>
-  
-  <div class="row">
-    <% if @review.errors.any? %>
-      <%= @review.errors.count %>件のエラーが発生しました。
-      <ul>
-        <%= @review.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">コメント投稿</h5>
+      <div class="form-body p-4">
+        <% if @comment.errors.any? %>
+          <ul class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">
+              <%= @comment.errors.count %>件のエラーが発生しました。
+            </h6>
+            <%= @comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
         <% end %>
-      </ul>
-    <% end %>
-  </div>
-  
-  <div class="row">
-    <%= form_with model: @comment, url: comments_path, method: :post do |f| %>
-    <table>
-      <tr><td>コメント</td><td><%= f.text_area :thoughts %></td></tr>
-      <%= f.hidden_field :review_id, value: @review.id %>
-      <%= f.hidden_field :customer_id, value: current_customer.id %>
-    </table>
-    <%= f.submit "投稿する", class: 'btn btn-success' %>
-    <% end %>
+        
+        <%= form_with model: @comment, url: comments_path, method: :post do |f| %>
+          <div class="input-group mb-3 mt-4">
+            <%= f.text_area :thoughts, class: "form-control", size: "3x10", placeholder: "コメント" %>
+          </div>
+          <%= f.hidden_field :review_id, value: @review.id %>
+          <%= f.hidden_field :customer_id, value: current_customer.id %>
+          <hr>
+          <%= f.submit "投稿する", class: 'btn btn-lg btn-block btn-success my-4' %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

@@ -14,7 +14,10 @@
           </ul>
         <% end %>
         
-        <%= form_with model: [@tourist_spot, @review]  do |f| %>
+        <%= form_with model: @review, url: tourist_spot_reviews_path, method: :post do |f| %>
+          <div class="input-group mb-3 mt-4">
+            <%= f.text_field :title, class: "form-control", placeholder: "タイトル" %>
+          </div>
           <%= f.file_field :image,accept: "image/*", class: 'w-100' %>
           <div class="input-group mb-3 mt-4">
             <%= f.text_area :thoughts, class: "form-control", placeholder: "感想" %>

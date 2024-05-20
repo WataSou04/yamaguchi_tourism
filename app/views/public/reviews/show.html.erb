@@ -1,21 +1,75 @@
 <div class="container">
-  <div class="row">
-    <h5>レビュー詳細</h5>
+  <div class="row mt-5">
+    <div class="col">
+      <div>
+        <h3><strong><%= @tourist_spot.name %></strong></h3>
+      </div>
+      <div>
+        <p><%= @tourist_spot.address %></p>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <table>
-      <tr><td>投稿者</td><td></td></tr>
-      <tr><td>評価数</td><td><%= @review.evaluation %></td></tr>
-      <tr><td>感想</td><td><%= @review.thoughts %></td></tr>
-    </table>
+  <div class="row py-3 border-top border-bottom">
+    <div class="col">
+      <div>
+        <h5><%= @review.customer.last_name %> <%= @review.customer.first_name %></h5>
+      </div>
+      <div class="mt-2">
+        <h5><strong><%= @review.title %></strong></h5>
+      </div>
+      <div id="star_<%= @review.id %>", class="mb-1"></div>
+        <script>
+        $(document).on('turbolinks:load', function() {
+          let elem = document.querySelector('#star_<%= @review.id %>');
+          if (elem == null) return;
+  
+          elem.innerHTML = "";
+          let opt = {  
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            score: "<%= @review.evaluation %>",
+            readOnly: true,
+          };
+          raty(elem, opt);
+        });
+        </script>
+      <div>
+        <%= @review.thoughts %>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <table>
-      <% @comments.each do |comment| %>
-      <tr><td>投稿者</td><td>コメント</td></tr>
-      <tr><td><%= comment.customer.last_name %> <%= comment.customer.first_name %></td><td><%= comment.thoughts %></td></tr>
+  
+  <div class="row mt-3">
+    <div class="col-md-4">
+      <% if @comment.errors.any? %>
+        <ul class="alert alert-danger" role="alert">
+          <h6 class="alert-heading">
+            <%= @comment.errors.count %>件のエラーが発生しました。
+          </h6>
+          <%= @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </table>
+      
+      <%= form_with model: @comment, url: comments_path, method: :post do |f| %>
+        <div class="input-group mb-3">
+          <%= f.text_area :thoughts, class: "form-control", size: "3x10", placeholder: "コメント" %>
+        </div>
+          <%= f.hidden_field :review_id, value: @review.id %>
+          <%= f.hidden_field :customer_id, value: current_customer.id %>
+        <hr>
+        <%= f.submit "投稿する", class: 'btn btn-lg btn-block btn-success my-4' %>
+      <% end %>
+    </div>
+    <div class="col-md-7 offset-md-1">
+      <% @comments.each do |comment| %>
+      <div class="mb-2 border-bottom">
+        <h5><%= comment.customer.last_name %> <%= comment.customer.first_name %></h5>
+        <p><%= comment.thoughts %></p>
+      </div>
+      <% end %>
+    </div>
   </div>
-  <div class="row"><%= link_to "コメントを書く", comment_make_path(@review.id) %></div>
 </div>

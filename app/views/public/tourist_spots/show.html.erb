@@ -35,27 +35,29 @@
     <%= link_to "レビューを書く", new_tourist_spot_review_path(@tourist_spot.id), class: 'btn btn-link' %>
   </div>
   <div class="row">
-    <table class="table">
-      <tr><td>投稿者</td><td>評価</td><td>コメント</td></tr>
     <% @reviews.each do |review| %>
-      <tr><td><%= review.customer.last_name %> <%= review.customer.first_name %></td><td><div id="star_<%= review.id %>"></div>
-<script>
-$(document).on('turbolinks:load', function() {
-  let elem = document.querySelector('#star_<%= review.id %>');
-  if (elem == null) return;
+    <div class="col-md-12 border-top border-bottom py-3">
+      <div class="mb-3"><h5><%= review.customer.last_name %> <%= review.customer.first_name %></h5></div>
+      <div id="star_<%= review.id %>", class="mb-1"></div>
+        <script>
+        $(document).on('turbolinks:load', function() {
+          let elem = document.querySelector('#star_<%= review.id %>');
+          if (elem == null) return;
   
-  elem.innerHTML = "";
-  let opt = {  
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    score: "<%= review.evaluation %>",
-    readOnly: true,
-  };
-  raty(elem, opt);
-});
-</script></td><td><%= review.thoughts %></td><td><%= link_to "詳細", tourist_spot_review_path(review.tourist_spot_id, review.id) %></td></tr>
+          elem.innerHTML = "";
+          let opt = {  
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            score: "<%= review.evaluation %>",
+            readOnly: true,
+          };
+          raty(elem, opt);
+        });
+        </script>
+      <div class="mb-2"><%= link_to tourist_spot_review_path(@tourist_spot.id, review.id), class: 'text-dark' do %><strong><%= review.title %></strong><% end %></div>
+      <div><%= review.thoughts %></div>
+    </div>
     <% end %>
-    </table>
   </div>
 </div>
