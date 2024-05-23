@@ -24,6 +24,7 @@
           <hr>
           <%= f.submit "ログイン", class: 'btn btn-lg btn-block btn-success my-4' %>
         <% end %>
+        <%= link_to "ゲストログイン", customers_guest_sign_in_path, class: 'btn btn-lg btn-block btn-secondary sign_in', method: :post %>
         <hr>
         <div class="mt-4">
           <h5>会員登録がお済みでない方</h5>
