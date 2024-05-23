@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:new, :create, :show, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
+    get 'search' => 'searches#search'
     get 'favorite/show' => 'favorites#show'
     post 'reviews/check' => 'reviews#check'
     get 'comments/:id/new' => 'comments#new', as: :comment_make

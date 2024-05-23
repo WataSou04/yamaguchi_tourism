@@ -13,6 +13,18 @@ class TouristSpot < ApplicationRecord
   
   enum season: { spring: 0, summer: 1, autumn: 2, winter: 3 }
   
+  def self.search_for(content, method)
+    if method == 'perfect'
+      TouristSpot.where(name: content)
+    elsif method == 'forward'
+      TouristSpot.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+      TouristSpot.where('name LIKE ?', '%' + content)
+    else
+      TouristSpot.where('name LIKE ?', '%' + content + '%')
+    end
+  end
+  
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end

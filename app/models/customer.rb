@@ -20,4 +20,9 @@ class Customer < ApplicationRecord
       customer.is_active = true
     end
   end
+  
+  def guest_customer?
+    email == GUEST_CUSTOMER_EMAIL
+  end
+  
 end
