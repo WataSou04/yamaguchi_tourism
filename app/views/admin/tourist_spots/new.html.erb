@@ -28,10 +28,12 @@
             </div>
             <%= f.text_field :address, class: "form-control", placeholder: "観光地場所" %>
           </div>
-          <%= f.radio_button :season, :spring, id:"spring" %><label for="spring">春</label>
-          <%= f.radio_button :season, :summer, id:"summer" %><label for="summer">夏</label>
-          <%= f.radio_button :season, :autumn, id:"autumn" %><label for="autumn">秋</label>
-          <%= f.radio_button :season, :winter, id:"winter" %><label for="winter">冬</label>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
+            </div>
+            <%= f.text_field :category, class: "form-control", placeholder: "カテゴリー" %>
+          </div>
           <%= f.text_area :explanation, class: "form-control", rows: "3", placeholder: "観光地情報" %>
           <hr>
           <%= f.submit "新規登録", class: 'btn btn-lg btn-block btn-info mt-4' %>

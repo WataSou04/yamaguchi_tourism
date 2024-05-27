@@ -46,6 +46,6 @@ class Admin::TouristSpotsController < ApplicationController
   private
   
   def tourist_spot_params
-    params.require(:tourist_spot).permit(:image, :name, :explanation, :address, :season)
+    params.require(:tourist_spot).permit(:image, :name, :explanation, :address, :category)
   end
 end

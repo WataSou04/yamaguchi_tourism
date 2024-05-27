@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2024_04_12_121749) do
     t.string "name", null: false
     t.text "explanation", null: false
     t.string "address", null: false
-    t.integer "season", null: false
+    t.string "category", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude", default: 0.0, null: false

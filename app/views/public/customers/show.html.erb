@@ -14,9 +14,9 @@
         </div>
         <hr>
         <% unless @customer.guest_customer? %>
-        <%= link_to "編集する", customers_information_edit_path, class: 'btn btn-lg btn-block btn-info my-4' %>
+          <%= link_to "編集する", customers_information_edit_path, class: 'btn btn-lg btn-block btn-info my-4' %>
+          <%= link_to "お気に入り観光地", favorite_show_path, class: 'btn btn-lg btn-block btn-primary' %>
         <% end %>
-        <%= link_to "お気に入り観光地", favorite_show_path, class: 'btn btn-lg btn-block btn-primary' %>
       </div>
     </div>
   </div>

@@ -13,10 +13,10 @@ class Customer < ApplicationRecord
   def self.guest
     find_or_create_by!(email: GUEST_CUSTOMER_EMAIL) do |customer|
       customer.password = SecureRandom.urlsafe_base64
-      customer.first_name = "guest"
-      customer.last_name = "user"
-      customer.first_name_kana = "ゲスト"
-      customer.last_name_kana = "ユーザー"
+      customer.first_name = "user"
+      customer.last_name = "geust"
+      customer.first_name_kana = "ユーザー"
+      customer.last_name_kana = "ゲスト"
       customer.is_active = true
     end
   end

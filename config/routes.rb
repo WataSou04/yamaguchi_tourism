@@ -19,7 +19,8 @@ Rails.application.routes.draw do
       resources :reviews, only: [:new, :create, :show, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
-    get 'search' => 'searches#search'
+    get 'search' => 'tourist_spots#search'
+    get 'tagsearch' => 'tourist_spots#tagsearch'
     get 'favorite/show' => 'favorites#show'
     post 'reviews/check' => 'reviews#check'
     get 'comments/:id/new' => 'comments#new', as: :comment_make
@@ -32,9 +33,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
-    resources :tourist_spots, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :tourist_spots, only: [:new, :create, :show, :edit, :update, :destroy] do
+      resources :reviews, only: [:show, :destroy]
+    end
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :reviews, only: [:show, :destroy]
     resources :comments, only: [:destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

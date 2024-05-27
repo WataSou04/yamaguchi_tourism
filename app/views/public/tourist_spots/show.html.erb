@@ -2,20 +2,22 @@
   <div class="row mt-5">
     <div class="col-12">
       <h1><strong><%= @tourist_spot.name %></strong></h1>
-      <% if @tourist_spot.favorited_by?(current_customer) %>
-      <p>
-        <%= link_to tourist_spot_favorite_path(@tourist_spot), method: :delete, class: 'btn btn-outline-danger' do %>
-          ❤︎️<%= @tourist_spot.favorites.count %>お気に入り
+      <% unless @customer.guest_customer? %>
+        <% if @tourist_spot.favorited_by?(current_customer) %>
+        <p>
+          <%= link_to tourist_spot_favorite_path(@tourist_spot), method: :delete, class: 'btn btn-outline-danger' do %>
+            ❤︎️<%= @tourist_spot.favorites.count %>お気に入り
+          <% end %>
+        </p>
+        <% else %>
+        <p>
+          <%= link_to tourist_spot_favorite_path(@tourist_spot), method: :post, class: 'btn btn-outline-danger' do %>
+            ♡<%= @tourist_spot.favorites.count %>お気に入り
+          <% end %>
+        </p>
         <% end %>
-      </p>
-    <% else %>
-      <p>
-        <%= link_to tourist_spot_favorite_path(@tourist_spot), method: :post, class: 'btn btn-outline-danger' do %>
-          ♡<%= @tourist_spot.favorites.count %>お気に入り
-        <% end %>
-      </p>
-    <% end %>
-      <h5><%= @tourist_spot.address %></h5>
+      <% end %>
+      <h5><%= @tourist_spot.address %>  |  <%= @tourist_spot.category %></h5>
     </div>
   </div>
   <div class="row mt-2">

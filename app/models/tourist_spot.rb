@@ -6,12 +6,12 @@ class TouristSpot < ApplicationRecord
   validates :name, presence: true
   validates :explanation, presence: true
   validates :address, presence: true
-  validates :season, presence: true
+  validates :category, presence: true
   
   geocoded_by :address
   after_validation :geocode
   
-  enum season: { spring: 0, summer: 1, autumn: 2, winter: 3 }
+  GUEST_CUSTOMER_EMAIL = "guest@example.com"
   
   def self.search_for(content, method)
     if method == 'perfect'
