@@ -1,4 +1,3 @@
-<div id="map", class="mt-5"></div>
 <div class="card-list-container py-5 d-flex flex-wrap">
   <% @favorites.each do |favorite| %>
   <div class="card w-25 mx-auto mt-4 shadow-lg">
@@ -23,4 +22,3 @@
   <%= paginate @favorites %>
 </div>
 
-<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>

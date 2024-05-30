@@ -18,13 +18,13 @@ async function initMap() {
   var paths = url.pathname.split('/');
   var id = paths.pop();
   var json_url = "";
-  if(url.pathname.indexOf("/favorite/show")  == 0 ){
+  if(url.pathname.indexOf("/favorite/show") !== -1 ){
     json_url = "/favorite/show.json";
   }
   else{
     json_url = `/admin/tourist_spots/${id}.json`;
   }
-  console.log(url.pathname.indexOf("/favorite/show"));
+  console.log(url.pathname.indexOf("favorite/show"));
   console.log(json_url);
   const response = await fetch(json_url).then((res) => res.json()).catch(error => console.error(error))
   if (response.data.items) {

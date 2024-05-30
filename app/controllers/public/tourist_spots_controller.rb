@@ -16,9 +16,15 @@ class Public::TouristSpotsController < ApplicationController
   end
   
   def show
-    @customer = current_customer
-    @tourist_spot = TouristSpot.find(params[:id])
-    @review = Review.new
-    @reviews = Review.where(tourist_spot_id: @tourist_spot.id)
+    respond_to do |format|
+      format.html do
+        @tourist_spot = TouristSpot.find(params[:id])
+        @reviews = Review.where(tourist_spot_id: @tourist_spot.id)
+        @customer = current_customer
+      end
+      format.json do
+        @tourist_spot = [TouristSpot.find(params[:id])]
+      end
+    end
   end
 end
