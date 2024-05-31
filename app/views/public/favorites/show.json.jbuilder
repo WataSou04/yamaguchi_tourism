@@ -6,7 +6,7 @@ json.data do
       json.name favorite.tourist_spot.name
       json.explanation favorite.tourist_spot.explanation
       json.address favorite.tourist_spot.address
-      json.season favorite.tourist_spot.season
+      json.category favorite.tourist_spot.category
       json.latitude favorite.tourist_spot.latitude
       json.longitude favorite.tourist_spot.longitude
     end  

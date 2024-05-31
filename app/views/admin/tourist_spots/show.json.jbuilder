@@ -6,7 +6,7 @@ json.data do
       json.name tourist_spot.name
       json.explanation tourist_spot.explanation
       json.address tourist_spot.address
-      json.season tourist_spot.season
+      json.category tourist_spot.category
       json.latitude tourist_spot.latitude
       json.longitude tourist_spot.longitude
     end  

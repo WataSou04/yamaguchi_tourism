@@ -18,27 +18,53 @@ async function initMap() {
   var paths = url.pathname.split('/');
   var id = paths.pop();
   var json_url = "";
-  if(url.pathname.indexOf("/favorite/show") !== -1 ){
+  if(url.pathname.indexOf("/favorite/show") == 0 ){
     json_url = "/favorite/show.json";
   }
   else{
     json_url = `/admin/tourist_spots/${id}.json`;
   }
-  console.log(url.pathname.indexOf("favorite/show"));
+  console.log(url.pathname.indexOf("/favorite/show"));
   console.log(json_url);
   const response = await fetch(json_url).then((res) => res.json()).catch(error => console.error(error))
   if (response.data.items) {
     const items = response.data.items
     items.forEach((item) => {
+      const Name = item.name;
+      const Iamge = item.image;
+      const address = item.address;
+      const category = item.category;
       const marker = new google.maps.Marker({
         position: new google.maps.LatLng(item.latitude, item.longitude),
         map,
-        title: item.name,
+        title: Name,
+      });
+      const contentString = `
+        <div class="information container p-0">
+          <div class="mb-3">
+            <img src="${Image}" loading="lazy">
+          </div>
+          <div>
+            <h1 class="h4 font-weight-bold">${Name}</h1>
+            <p class="text-muted">${address}</p>
+            <p>${category}</p>
+          </div>
+        </div>
+      `;
+      
+      const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+        ariaLabel: Name,
+      });
+      
+      marker.addListener("click", () => {
+          infowindow.open({
+          anchor: marker,
+          map,
+        })
       });
     });
   }
 }
-
-
 
 initMap()

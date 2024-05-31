@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-
+  <div id="map", class="mt-3"></div>
   <div class="row mt-5">
     <%= link_to "レビューを書く", new_tourist_spot_review_path(@tourist_spot.id), class: 'btn btn-link' %>
   </div>
@@ -65,3 +65,4 @@
   </div>
 </div>
 
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
