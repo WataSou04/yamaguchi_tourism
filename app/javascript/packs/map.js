@@ -31,7 +31,7 @@ async function initMap() {
     const items = response.data.items
     items.forEach((item) => {
       const Name = item.name;
-      const Iamge = item.image;
+      const Image = item.image;
       const address = item.address;
       const category = item.category;
       const marker = new google.maps.Marker({
@@ -42,10 +42,10 @@ async function initMap() {
       const contentString = `
         <div class="information container p-0">
           <div class="mb-3">
-            <img src="${Image}" loading="lazy">
+            <img src="${Image}" width="180" height="130" loading="lazy">
           </div>
           <div>
-            <h1 class="h4 font-weight-bold">${Name}</h1>
+            <h4 class="font-weight-bold">${Name}</h4>
             <p class="text-muted">${address}</p>
             <p>${category}</p>
           </div>
