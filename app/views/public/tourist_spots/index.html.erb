@@ -13,7 +13,7 @@
     <% end %>
   </div>
 </div>
-<div class="card-list-container pt-3 d-flex">
+<div class="card-list-container mt-3 d-flex flex-wrap justify-content-around">
   <% @tourist_spots.each do |tourist_spot| %>
   <div class="card w-25 m-4 shadow-lg">
     <%= link_to tourist_spot_path(tourist_spot.id) do %>
