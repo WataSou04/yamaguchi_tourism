@@ -17,6 +17,7 @@ class Public::ReviewsController < ApplicationController
   end
   
   def create
+    @tourist_spot = TouristSpot.find(params[:tourist_spot_id])
     @review = Review.new(review_params)
     if @review.save
       redirect_to tourist_spot_review_path(@review.tourist_spot.id, @review.id)

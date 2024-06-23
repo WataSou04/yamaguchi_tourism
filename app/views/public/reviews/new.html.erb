@@ -3,6 +3,7 @@
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light p-4 mb-0">レビュー投稿</h5>
       <div class="form-body p-4">
+        <h5><strong><%= @tourist_spot.name %></strong></h5>
         <% if @review.errors.any? %>
           <ul class="alert alert-danger" role="alert">
             <h6 class="alert-heading">
@@ -18,7 +19,6 @@
           <div class="input-group mb-3 mt-4">
             <%= f.text_field :title, class: "form-control", placeholder: "タイトル" %>
           </div>
-          <%= f.file_field :image,accept: "image/*", class: 'w-100' %>
           <div class="input-group mb-3 mt-4">
             <%= f.text_area :thoughts, class: "form-control", placeholder: "感想" %>
           </div>
