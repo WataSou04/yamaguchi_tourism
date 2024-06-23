@@ -13,18 +13,18 @@
     <% end %>
   </div>
 </div>
-<div class="card-list-container py-3 d-flex flex-wrap">
+<div class="card-list-container pt-3 d-flex">
   <% @tourist_spots.each do |tourist_spot| %>
-  <div class="card w-25 mx-auto mt-4 shadow-lg">
+  <div class="card w-25 m-4 shadow-lg">
     <%= link_to tourist_spot_path(tourist_spot.id) do %>
       <%= image_tag tourist_spot.image, class: "card-img-top"; %>
     <% end %>
     <div class="card-body">
       <div class="row">
-        <div class="col-10">
+        <div class="col">
           <p class="card-title">
             <%= link_to(tourist_spot_path(tourist_spot.id), class: "text-dark") do %>
-              <strong><i class="far fa-flag"></i><span><%= tourist_spot.name %></span></strong>
+              <strong><i class="far fa-flag"></i><h5><%= tourist_spot.name %></h5></strong>
             <% end %>
           </p>
           <p class="card-text"><%= tourist_spot.address %></p>
