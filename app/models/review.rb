@@ -6,5 +6,4 @@ class Review < ApplicationRecord
   
   validates :evaluation, presence: true
   validates :thoughts, presence: true
-  validates :image, presence: true
 end
